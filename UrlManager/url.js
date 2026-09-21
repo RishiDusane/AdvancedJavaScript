@@ -1,6 +1,5 @@
 const BASE_URL = "https://crudcrud.com/api/0cf2a45c5ab34117b98cdc569a0d8a08/users";
 
-// Save a bookmark when the form is submitted
 function handleFormSubmit(event) {
 	event.preventDefault();
 
@@ -21,7 +20,6 @@ function handleFormSubmit(event) {
 	event.target.reset();
 }
 
-// Show all saved bookmarks when the page loads
 window.addEventListener("DOMContentLoaded", () => {
 	axios
 		.get(BASE_URL)
@@ -40,7 +38,7 @@ function showBookmarkOnScreen(bookmark) {
 	const li = document.createElement("li");
 	li.textContent = bookmark.title + " - ";
 
-	// Make the saved URL clickable so it redirects to the website after POST.
+
 	const link = document.createElement("a");
 	link.href = bookmark.url;
 	link.target = "_blank";
@@ -49,7 +47,7 @@ function showBookmarkOnScreen(bookmark) {
 	li.appendChild(link);
 	li.appendChild(document.createTextNode(" "));
 
-	// Delete button
+
 	const deleteBtn = document.createElement("button");
 	deleteBtn.textContent = "Delete";
 	deleteBtn.addEventListener("click", () => {
@@ -63,7 +61,6 @@ function showBookmarkOnScreen(bookmark) {
 			});
 	});
 
-	// Edit button: put the details back in the form and delete the old one
 	const editBtn = document.createElement("button");
 	editBtn.textContent = "Edit";
 	editBtn.addEventListener("click", () => {
