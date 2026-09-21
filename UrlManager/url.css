@@ -1,0 +1,39 @@
+body {
+	margin: 0;
+	font-family: Arial, sans-serif;
+	padding: 30px;
+	background-color: lightblue;
+	text-align: center;
+}
+
+h1 {
+	text-align: center;
+}
+
+label {
+	display: inline-block;
+	width: 110px;
+	margin-bottom: 10px;
+	text-align: left;
+}
+
+form {
+	display: inline-block;
+	padding: 20px;
+	background-color: white;
+	text-align: left;
+}
+
+input {
+	width: 190px;
+	margin-bottom: 10px;
+}
+
+ul {
+	list-style: none;
+	padding: 0;
+}
+
+li {
+	margin-bottom: 10px;
+}
