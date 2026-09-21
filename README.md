@@ -1,15 +1,4 @@
-# Calculator App
+# URL Manager
 
-A simple calculator made with HTML, CSS, and JavaScript.
-
-## How to use
-
-1. Open `calculator/calc.html` in a browser.
-2. Click the calculator buttons or use your keyboard.
-
-## Features
-
-- Addition, subtraction, multiplication, division, and remainder
-- Decimal numbers
-- Delete and clear buttons
-- Keyboard support
+A simple URL MANAGER made with HTML, CSS, and JavaScript.
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/5f0fbf5c-53d5-487f-8dde-f3a9407f28d7" />
