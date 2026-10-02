@@ -12,23 +12,21 @@ function resetForm() {
 	}
 }
 
-function loadBookmarks() {
+async function loadBookmarks() {
 	const list = document.getElementById("bookmarkList");
 	if (!list) return;
 
 	list.innerHTML = "";
 
-	axios
-		.get(BASE_URL)
-		.then((response) => {
-			response.data.forEach((bookmark) => showBookmarkOnScreen(bookmark));
-		})
-		.catch((error) => {
-			console.log(error);
-		});
+	try {
+		const response = await axios.get(BASE_URL);
+		response.data.forEach((bookmark) => showBookmarkOnScreen(bookmark));
+	} catch (error) {
+		console.log(error);
+	}
 }
 
-function handleFormSubmit(event) {
+async function handleFormSubmit(event) {
 	event.preventDefault();
 
 	const bookmark = {
@@ -40,22 +38,22 @@ function handleFormSubmit(event) {
 		return;
 	}
 
-	const request = editingId
-		? axios.put(BASE_URL + "/" + editingId, bookmark)
-		: axios.post(BASE_URL, bookmark);
+	try {
+		if (editingId) {
+			await axios.put(BASE_URL + "/" + editingId, bookmark);
+		} else {
+			await axios.post(BASE_URL, bookmark);
+		}
 
-	request
-		.then(() => {
-			resetForm();
-			loadBookmarks();
-		})
-		.catch((error) => {
-			console.log(error);
-		});
+		resetForm();
+		await loadBookmarks();
+	} catch (error) {
+		console.log(error);
+	}
 }
 
-window.addEventListener("DOMContentLoaded", () => {
-	loadBookmarks();
+window.addEventListener("DOMContentLoaded", async () => {
+	await loadBookmarks();
 });
 
 function showBookmarkOnScreen(bookmark) {
@@ -76,15 +74,13 @@ function showBookmarkOnScreen(bookmark) {
 
 	const deleteBtn = document.createElement("button");
 	deleteBtn.textContent = "Delete";
-	deleteBtn.addEventListener("click", () => {
-		axios
-			.delete(BASE_URL + "/" + bookmarkId)
-			.then(() => {
-				loadBookmarks();
-			})
-			.catch((error) => {
-				console.log(error);
-			});
+	deleteBtn.addEventListener("click", async () => {
+		try {
+			await axios.delete(BASE_URL + "/" + bookmarkId);
+			await loadBookmarks();
+		} catch (error) {
+			console.log(error);
+		}
 	});
 
 	const editBtn = document.createElement("button");
